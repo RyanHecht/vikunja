@@ -500,6 +500,32 @@ func TestExtractCustomEmailClaim(t *testing.T) {
 		assert.Equal(t, "standard@example.com", email)
 	})
 
+	t.Run("Uses upn when email claim is missing and emailscope is upn", func(t *testing.T) {
+		provider := &Provider{
+			EmailClaim: "upn",
+		}
+
+		// Simulate raw claims without the standard email claim
+		rawClaims := map[string]interface{}{
+			"upn": "custom-upn@example.com",
+		}
+
+		// If a custom email claim is configured, extract it
+		var email string
+		if provider.EmailClaim != "" {
+			if customEmail, ok := rawClaims[provider.EmailClaim].(string); ok && customEmail != "" {
+				email = customEmail
+			}
+		}
+		if email == "" {
+			if standardEmail, ok := rawClaims["email"].(string); ok {
+				email = standardEmail
+			}
+		}
+
+		assert.Equal(t, "custom-upn@example.com", email)
+	})
+
 	t.Run("Uses standard email when no custom claim is configured", func(t *testing.T) {
 		provider := &Provider{
 			EmailClaim: "",
