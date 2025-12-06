@@ -768,6 +768,11 @@
                                             "key": "requireavailability",
                                             "default_value": "false",
                                             "comment": "This option requires the OpenID Connect provider to be available during Vikunja startup. When set to `true`, Vikunja will crash if it cannot connect to the provider during initialization, allowing container orchestrators like Kubernetes to handle the failure by restarting the application. This is useful in environments where you want to ensure all authentication providers are available before the application starts serving requests. Allowed value is either `true` or `false`."
+                                        },
+                                        {
+                                            "key": "emailclaim",
+                                            "default_value": "",
+                                            "comment": "This option allows specifying an alternative claim to use as the user's email address. By default, Vikunja uses the standard `email` claim. In environments like Azure AD where users may not have email addresses configured, you can set this to use a different claim such as `upn` (User Principal Name) or any other claim that contains a unique identifier in email format. The claim value should be a valid email-like string that can be used to identify the user."
                                         }
                                     ]
                                 }
