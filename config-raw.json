@@ -772,7 +772,7 @@
                                         {
                                             "key": "emailclaim",
                                             "default_value": "",
-                                            "comment": "This option allows specifying an alternative claim to use as the user's email address. By default, Vikunja uses the standard `email` claim. In environments like Azure AD where users may not have email addresses configured, you can set this to use a different claim such as `upn` (User Principal Name) or any other claim that contains a unique identifier in email format. The claim value should be a valid email-like string that can be used to identify the user."
+                                            "comment": "This option allows specifying an alternative claim to use as the user's email address. By default, Vikunja uses the standard `email` claim. In environments like Azure AD where users may not have email addresses configured or the email claim cannot be modified per-app, you can set this to use a different claim such as `upn` (User Principal Name) or any other claim that contains a unique identifier in email format. The claim value should be a valid email-like string that can be used to identify the user."
                                         }
                                     ]
                                 }
